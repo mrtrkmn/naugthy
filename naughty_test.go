@@ -24,3 +24,22 @@ func TestIsNaugthy(t *testing.T) {
 		})
 	}
 }
+
+func TestSliceString(t *testing.T) {
+	tests := []struct {
+		name  string
+		value string
+		a     string
+		want  string
+	}{
+		{name: "Test-1/One pattern  ", value: "https://randomthings.", a: "//", want: "randomthings."},
+		{name: "Test-2/Multiple patterns  ", value: "912r21r2r32r//asd212//adasdf.", a: "//", want: "adasdf."},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := SliceString(tt.value, tt.a); got != tt.want {
+				t.Errorf("SliceString() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
